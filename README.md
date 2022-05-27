@@ -8,7 +8,7 @@ The system is composed of Arduino UNO connected using Ethernet communication, as
 The Arduino takes signals from IMU sensor and emit digital signals for mechanisms, gripper, and LEDs, also it emits PWM signals for ESCs to move thrusters (t100) and servo.
 Arduino is also responsible for sending data or feedback to the GUI such as the determined distance and the readings that token from the IMU sensor as well as the used sensors.
 
-#ROV GUI
+## ROV GUI
 
 The top side control unit provides 2 screens of GUI to provide intuitive and fast control over ROV crucial functions. 
 The GUI is the general interface for the software, from which the pilot and co-pilot control the movement of the ROV and receive feedback from it.
