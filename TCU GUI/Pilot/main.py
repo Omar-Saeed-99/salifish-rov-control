@@ -94,11 +94,6 @@ class CamLabWorker:
 
 
 
-    # def exit(self, returnCode: int = ...) -> None:
-    #     if self.__sock.isOpen():
-    #         self.__sock.close()
-    #     return super().exit(returnCode)  
-
 
 
 class UI(QMainWindow):
@@ -114,29 +109,29 @@ class UI(QMainWindow):
        # Cam threads initialization
         mon = mss.mss().monitors[1]
         monitor1 = {
-            "top": mon["top"] +  15,  # 100px from the top
-            "left": mon["left"] +1,  # 100px from the left
+            "top": mon["top"] +  15,  # 15px from the top
+            "left": mon["left"] +1,  # 1px from the left
             "width": 958,
             "height": 525,
             "mon": 2
         }
         monitor2 = {
-            "top": mon["top"] +  15,  # 100px from the top
-            "left": mon["left"] +960,  # 100px from the left
+            "top": mon["top"] +  15,  
+            "left": mon["left"] +960,  
             "width": 958,
             "height": 525,
             "mon": 2
         }
         monitor3 = {
-            "top": mon["top"] +  550,  # 100px from the top
-            "left": mon["left"] +10,  # 100px from the left
+            "top": mon["top"] +  550,  
+            "left": mon["left"] +10, 
             "width": 945,
             "height": 525,
             "mon": 2
         }
         monitor4 = {
-            "top": mon["top"] +  550,  # 100px from the top
-            "left": mon["left"] +960,  # 100px from the left
+            "top": mon["top"] +  550,  
+            "left": mon["left"] +960, 
             "width": 958,
             "height": 525,
             "mon": 2
@@ -272,10 +267,10 @@ class UI(QMainWindow):
                     hsped = abs(w_axis)
                     self.ui.lcdRotaion.display(2*w_axis)
 
-                #  elif (w_axis in range (-5,5)) & (x_axis in range (-10,10)) & (y_axis in range (-5,5)) :
-                #     Hor_rotation_axis= 0
-                #     Hor_letrals = 0
-                #     Forw_back_Axis = 0
+                 elif (w_axis in range (-5,5)) & (x_axis in range (-10,10)) & (y_axis in range (-5,5)) :
+                    Hor_rotation_axis= 0
+                    Hor_letrals = 0
+                    Forw_back_Axis = 0
                 else:
                     Hor_rotation_axis= 0
                     Hor_letrals = 0
@@ -292,7 +287,7 @@ class UI(QMainWindow):
                         up_down_axis = 0
                         self.ui.lcdVertical.display(0)
 
-                elif (h_axis != 0) :  #up/down 
+                elif (h_axis != 0) : 
                     if (abs(h_axis) >10):
                         vsped = h_axis
                         self.ui.lcdHorse.display(h_axis)
@@ -301,7 +296,7 @@ class UI(QMainWindow):
                         ver_horse_ = 0
                         self.ui.lcdHorse.display(0)
 
-                elif (r_axis != 0) :  #up/down 
+                elif (r_axis != 0) : 
                     if (abs(r_axis) >10):
                         vsped = r_axis
                         self.ui.lcdRoll.display(r_axis)
@@ -345,8 +340,8 @@ class UI(QMainWindow):
 
                     
                     #print("Event")
-                                   #for rotaton gripper 90 or -90
-                if r_grip == True:    
+
+                    if r_grip == True:    
                     time.sleep(0.3)     
                     state2 = not state2
                     R_gripper = not R_gripper
@@ -385,49 +380,6 @@ class UI(QMainWindow):
                         self.ui.imu.setAlignment(Qt.AlignCenter)
                         self.ui.imu.setStyleSheet(f'QLabel {{ background-color : {"green" if state5 else "Red"}; }}')
 
-
-                # #if A>0
-                # #  self.ui.lcd_imu.display(int(A))
-                # #######################################################################################################
-                # #for connecting or disconnicting joystick
-
-                #     if event.type == pygame.JOYDEVICEADDED:
-                #         self.ui.Joystick.setText("Connected")
-                #         self.ui.Joystick.setStyleSheet("QLabel { background-color : green;}")
-
-
-                #     elif event.type == pygame.JOYDEVICEREMOVED:
-                #         self.ui.Joystick.setText("Disconnected")
-                #         self.ui.Joystick.setStyleSheet("QLabel { background-color : red;}")
-
-                # ########################################################################################################
-                # #For servo motor of camera
-                # #if (event.button ==4):
-                #     #   state6=not state6
-                #     #   y= y +5
-                #     #   self.ui.stepper_dial.setValue(y)
-                #     #   self.ui.stepper_lcd.display(y)
-                # #elif (event.button ==7):
-                # #    state7=not state7
-                # #    y= y-5
-                # #    self.ui.stepper_dial.setValue(y)
-                # #    self.ui.stepper_lcd.display(y)
-                # ########################################################################################################## 
-
-                # #servo_cam
-                # ######################################################
-                #  if event.type == pygame.JOYHATMOTION:
-                #     if event.hat == 0:
-                #         if event.value == (0,1):
-                #             servo_cam += 10  ## for GUI
-
-                #         servosend = 1     ## for send
-                #         elif event.value == (0,-1):
-                #         servo_cam -= 10
-                #         servosend = 2 
-
-                #     self.ui.stepper_dial.setValue(servo_cam)
-                #     self.ui.stepper_lcd.display(servo_cam)
                 if c_axis[1] == 1:
                     time.sleep(0.3)
                     servo += 10
@@ -445,8 +397,6 @@ class UI(QMainWindow):
                 self.ui.stepper_dial.setValue(servo)
                 self.ui.stepper_lcd.display(servo)
                 
-                #  elif (c_axis[0] == -1) or (c_axis[0] == 1):
-                #     servo = 90
 
                     #print(event)
                 
@@ -455,7 +405,9 @@ class UI(QMainWindow):
                         int(R_gripper),
                         int(Led),
                         int(Imu)]), 2)
+                
                 #  for event in pygame.event.get():
+                
                 # if abs(hsped-hsped_old)>1 or abs(vsped-vspeed_old)>1 or on_off!= on_off_old or servosend!=servosend_old:
                 # time.sleep(0.05) 
                 data=  SFMessage(For_back= Forw_back_Axis,
@@ -491,7 +443,6 @@ class UI(QMainWindow):
 
                                 
                 except:
-                            #logger.warning(f"error reciving the message")
                         Socket_try()
                         pass
 
