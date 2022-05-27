@@ -1,4 +1,4 @@
-#controlling rov using arduino
+# controlling rov using arduino
 
 ## rov spacifcations:
 the rov has 2 leds 2 neumatic grippers and 7 thrusters, with depth and imu sensor 
